@@ -12,11 +12,9 @@ public class MessageDAO {
     public Message insertMessage(Message message){
         Connection connection = ConnectionUtil.getConnection();
         try {
-            //Write SQL logic here
             String sql = "INSERT INTO message (posted_by, message_text, time_posted_epoch) values (?, ?, ?);" ;
             PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            //write preparedStatement's setString and setInt methods here.
             preparedStatement.setInt(1, message.getPosted_by());
             preparedStatement.setString(2, message.getMessage_text());
             preparedStatement.setLong(3, message.getTime_posted_epoch());
@@ -56,11 +54,9 @@ public class MessageDAO {
     public Message getMessageByID(int message_id) {
         Connection connection = ConnectionUtil.getConnection();
         try {
-            // Write SQL logic here
             String sql = "select * from message where message_id = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            // write preparedStatement's setInt method here.
             preparedStatement.setInt(1, message_id);
 
             ResultSet rs = preparedStatement.executeQuery();
@@ -98,11 +94,9 @@ public class MessageDAO {
     public Message updateMessage(Message message){
         Connection connection = ConnectionUtil.getConnection();
         try {
-            //Write SQL logic here
             String sql = "update message set posted_by = ?, message_text = ?, time_posted_epoch = ? where message_id = ?;" ;
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            //write preparedStatement's setString and setInt methods here.
             preparedStatement.setInt(4, message.getMessage_id());
             preparedStatement.setInt(1, message.getPosted_by());
             preparedStatement.setString(2, message.getMessage_text());
@@ -122,11 +116,9 @@ public class MessageDAO {
         Connection connection = ConnectionUtil.getConnection();
         List<Message> messages = new ArrayList<>();
         try {
-            // Write SQL logic here
             String sql = "select * from message where posted_by = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            // write preparedStatement's setInt method here.
             preparedStatement.setInt(1, posted_by);
 
             ResultSet rs = preparedStatement.executeQuery();

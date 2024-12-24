@@ -9,9 +9,6 @@ import java.util.List;
 
 public class AccountDAO {
 
-    /**
-     * @return all Accounts.
-     */
     public List<Account> getAllAccounts() {
         Connection connection = ConnectionUtil.getConnection();
         List<Account> accounts = new ArrayList<>();
@@ -55,11 +52,9 @@ public class AccountDAO {
     public Account getAccountByUserPwd(Account account) {
         Connection connection = ConnectionUtil.getConnection();
         try {
-            // Write SQL logic here
             String sql = "select * from account where username = ? and password = ?;";
             PreparedStatement preparedStatement = connection.prepareStatement(sql);
 
-            // write preparedStatement's setInt method here.
             preparedStatement.setString(1, account.getUsername());
             preparedStatement.setString(2, account.getPassword());
 
